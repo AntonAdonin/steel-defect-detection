@@ -1,0 +1,114 @@
+# --------------------
+# OS / editors
+# --------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+*.sublime-*
+*.swp
+
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+
+# --------------------
+# Logs / temp / coverage
+# --------------------
+*.log
+logs/
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+coverage/
+htmlcov/
+
+# --------------------
+# Virtual environments / env files / secrets
+# --------------------
+.env
+.env.*.local
+.envrc
+secrets.yml
+*.pem
+*.key
+*.crt
+
+# --------------------
+# Common ML / model artifacts (binaries)
+# --------------------
+# model artifacts
+*.onnx
+*.pt
+*.pth
+*.torchscript
+*.tflite
+*.bin
+*.xml
+*.mlmodel
+*.h5
+*.ckpt
+*.tar.gz
+*.zip
+
+# data and large artifacts
+*.npy
+*.npz
+*.tfrecord
+datasets/
+data/
+model_weights/
+weights/
+
+# Triton model repo: ignore model version directories (weights) but keep config files
+model_repository/*/1/*
+!model_repository/*/config.pbtxt
+!model_repository/*/README.md
+
+# --------------------
+# Project outputs / runs / caches
+# --------------------
+out/
+dist/
+build/
+tmp/
+cache/
+runs/
+reports/
+*.seed
+*.pid
+
+# --------------------
+# Large media / outputs you likely don't want in git
+# --------------------
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+*.mov
+
+# --------------------
+# Keep .gitkeep files even in ignored dirs
+# --------------------
+# Unignore any .gitkeep so we can keep empty directories in repo
+!**/.gitkeep
+/*.mlproj
+# --------------------
+# Misc
+# --------------------
+*.lock
+*.bak
+*.orig
