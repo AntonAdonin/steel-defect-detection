@@ -31,7 +31,7 @@ def save_prediction(data, endpoint_name, image_path=None, img_bytes=None):
     json_file = output_dir / f"{endpoint_name}_{timestamp}.json"
     with open(json_file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
-    print(f"💾 Prediction JSON saved: {json_file}")
+    print(f" Prediction JSON saved: {json_file}")
 
     # Загружаем изображение
     img = None
@@ -50,7 +50,7 @@ def save_prediction(data, endpoint_name, image_path=None, img_bytes=None):
 
         img_file = output_dir / f"{endpoint_name}_img_{timestamp}.jpg"
         cv2.imwrite(str(img_file), img)
-        print(f"💾 Image with detections saved: {img_file}")
+        print(f" Image with detections saved: {img_file}")
 
 
 def test_api(api_url: str = "http://localhost:8000"):
@@ -71,18 +71,18 @@ def test_api(api_url: str = "http://localhost:8000"):
         response = requests.get(f"{api_url}/health")
         if response.status_code == 200:
             data = response.json()
-            print(f"   ✓ Status: {data['status']}")
-            print(f"   ✓ Model loaded: {data['model_loaded']}")
-            print(f"   ✓ Model: {data['model_name']} ({data['model_stage']})")
+            print(f"    Status: {data['status']}")
+            print(f"    Model loaded: {data['model_loaded']}")
+            print(f"    Model: {data['model_name']} ({data['model_stage']})")
         else:
-            print(f"   ❌ Failed: {response.status_code}")
+            print(f"    Failed: {response.status_code}")
             return
     except requests.exceptions.ConnectionError:
-        print("   ❌ Cannot connect to API. Is it running?")
+        print("    Cannot connect to API. Is it running?")
         print("      Start with: python commands.py start_api")
         return
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
         return
 
     # Test 2: Root endpoint
@@ -90,11 +90,11 @@ def test_api(api_url: str = "http://localhost:8000"):
     response = requests.get(api_url)
     if response.status_code == 200:
         data = response.json()
-        print(f"   ✓ Name: {data['name']}")
-        print(f"   ✓ Version: {data['version']}")
-        print(f"   ✓ Endpoints: {len(data['endpoints'])}")
+        print(f"    Name: {data['name']}")
+        print(f"    Version: {data['version']}")
+        print(f"    Endpoints: {len(data['endpoints'])}")
     else:
-        print(f"   ❌ Failed: {response.status_code}")
+        print(f"    Failed: {response.status_code}")
 
     # Test 3: Prediction with test image
     print("\n3. Testing prediction...")
@@ -117,9 +117,9 @@ def test_api(api_url: str = "http://localhost:8000"):
         img = Image.fromarray(dummy_img.astype("uint8"))
         test_image_path = Path("test_image.jpg")
         img.save(test_image_path)
-        print(f"   ✓ Created: {test_image_path}")
+        print(f"    Created: {test_image_path}")
     else:
-        print(f"   ✓ Using image: {test_image_path}")
+        print(f"    Using image: {test_image_path}")
 
     # Test image upload
     print("   Testing /predict/image endpoint...")
@@ -130,7 +130,7 @@ def test_api(api_url: str = "http://localhost:8000"):
 
         if response.status_code == 200:
             data = response.json()
-            print("   ✓ Success!")
+            print("    Success!")
             print(f"     - Detections: {data['num_detections']}")
             print(f"     - Processing time: {data['processing_time_ms']:.2f} ms")
             if data["detections"]:
@@ -141,10 +141,10 @@ def test_api(api_url: str = "http://localhost:8000"):
                 print(f"       • Class: {det['class_name']}")
             save_prediction(data, "predict_image", image_path=test_image_path)
         else:
-            print(f"   ❌ Failed: {response.status_code}")
+            print(f"    Failed: {response.status_code}")
             print(f"      {response.text}")
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
 
     # Test base64 endpoint
     print("\n   Testing /predict/base64 endpoint...")
@@ -162,26 +162,26 @@ def test_api(api_url: str = "http://localhost:8000"):
 
         if response.status_code == 200:
             data = response.json()
-            print("   ✓ Success!")
+            print("    Success!")
             print(f"     - Detections: {data['num_detections']}")
             print(f"     - Processing time: {data['processing_time_ms']:.2f} ms")
             save_prediction(data, "predict_base64", img_bytes=img_bytes)
         else:
-            print(f"   ❌ Failed: {response.status_code}")
+            print(f"    Failed: {response.status_code}")
             print(f"      {response.text}")
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"    Error: {e}")
 
     # Test 4: Model info
     print("\n4. Testing model info endpoint...")
     response = requests.get(f"{api_url}/model/info")
     if response.status_code == 200:
         data = response.json()
-        print(f"   ✓ Model: {data['model_name']}")
-        print(f"   ✓ Stage: {data['model_stage']}")
-        print(f"   ✓ URI: {data['model_uri']}")
+        print(f"    Model: {data['model_name']}")
+        print(f"    Stage: {data['model_stage']}")
+        print(f"    URI: {data['model_uri']}")
     else:
-        print(f"   ❌ Failed: {response.status_code}")
+        print(f"    Failed: {response.status_code}")
 
     print("\n" + "=" * 80)
     print("Testing Complete!")

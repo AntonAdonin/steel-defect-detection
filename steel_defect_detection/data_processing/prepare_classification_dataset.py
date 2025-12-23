@@ -60,7 +60,7 @@ def prepare_classification_dataset(
         for class_id in ["1", "2", "3", "4"]:
             (output_path / subset / class_id).mkdir(parents=True, exist_ok=True)
 
-    print(f"✓ Created output directories in {output_path}")
+    print(f" Created output directories in {output_path}")
 
     # Load train.csv
     train_csv_path = raw_path / "train.csv"
@@ -68,7 +68,7 @@ def prepare_classification_dataset(
         raise FileNotFoundError(f"train.csv not found at {train_csv_path}")
 
     train_df = pd.read_csv(train_csv_path)
-    print(f"✓ Loaded {len(train_df)} annotations from train.csv")
+    print(f" Loaded {len(train_df)} annotations from train.csv")
 
     # Split data by image IDs to avoid data leakage
     unique_image_ids = train_df["ImageId"].unique()
@@ -78,7 +78,7 @@ def prepare_classification_dataset(
     train_image_ids = set(unique_image_ids[:split_idx])
 
     print(
-        f"✓ Split: {len(train_image_ids)} train images, "
+        f" Split: {len(train_image_ids)} train images, "
         f"{len(unique_image_ids) - len(train_image_ids)} val images"
     )
 
@@ -137,7 +137,7 @@ def prepare_classification_dataset(
         cropped_img.save(save_path)
         train_count[subset][class_id] += 1
 
-    print("\n✓ Processed all annotations")
+    print("\n Processed all annotations")
 
     # Summary
     print("\n" + "=" * 80)

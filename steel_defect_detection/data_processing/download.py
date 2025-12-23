@@ -16,6 +16,8 @@ def download_data(output_dir: str = "data/raw") -> None:
 
     print(f"Downloading dataset to {output_path}...")
 
+    url = f"https://drive.google.com/uc?id=1zQ2VKA6ng5M_oXFd6JtM_r6keebwBtfK"
+
     # Import Kaggle API only when needed
     from kaggle.api.kaggle_api_extended import KaggleApi
 

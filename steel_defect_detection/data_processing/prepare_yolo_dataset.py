@@ -93,7 +93,7 @@ def prepare_yolo_dataset(
         (output_path / "images" / subset).mkdir(parents=True, exist_ok=True)
         (output_path / "labels" / subset).mkdir(parents=True, exist_ok=True)
 
-    print(f"✓ Created output directories in {output_path}")
+    print(f" Created output directories in {output_path}")
 
     # Load train.csv
     train_csv_path = raw_path / "train.csv"
@@ -101,11 +101,11 @@ def prepare_yolo_dataset(
         raise FileNotFoundError(f"train.csv not found at {train_csv_path}")
 
     train_df = pd.read_csv(train_csv_path)
-    print(f"✓ Loaded {len(train_df)} annotations from train.csv")
+    print(f" Loaded {len(train_df)} annotations from train.csv")
 
     # Group by ImageId
     grouped_df = train_df.groupby("ImageId")
-    print(f"✓ Found {len(grouped_df)} unique images")
+    print(f" Found {len(grouped_df)} unique images")
 
     # Split images into train/val
     unique_image_ids = list(grouped_df.groups.keys())
@@ -115,7 +115,7 @@ def prepare_yolo_dataset(
     train_image_ids = unique_image_ids[:split_idx]
     val_image_ids = unique_image_ids[split_idx:]
 
-    print(f"✓ Split: {len(train_image_ids)} train, {len(val_image_ids)} val images")
+    print(f" Split: {len(train_image_ids)} train, {len(val_image_ids)} val images")
 
     # Process images
     IMG_HEIGHT, IMG_WIDTH = 256, 1600
@@ -179,7 +179,7 @@ def prepare_yolo_dataset(
             with open(label_path, "w") as f:
                 f.write("\n".join(yolo_labels_for_image))
 
-    print("\n✓ Processed all images")
+    print("\n Processed all images")
 
     # Create data.yaml
     data_yaml = {
@@ -194,7 +194,7 @@ def prepare_yolo_dataset(
     with open(data_yaml_path, "w") as f:
         yaml.dump(data_yaml, f, sort_keys=False)
 
-    print(f"✓ Created {data_yaml_path}")
+    print(f" Created {data_yaml_path}")
 
     # Summary
     print("\n" + "=" * 80)
