@@ -73,6 +73,9 @@ model_weights/
 weights/
 *.db
 predictions/
+__MACOSX/
+severstal-steel-defect-detection/
+kaggle.json
 mlruns/
 *onnx.data
 outputs/
