@@ -73,6 +73,11 @@ rm -rf data.zip
 uv run python commands.py download_data
 
 # 2. Подготовить данные
+# 2.1. При загрузки датасета через kaggle
+uv run python commands.py prepare_yolo_kaggle
+uv run python commands.py prepare_classification_kaggle
+
+# 2.2. При загрузки датасета через curl
 uv run python commands.py prepare_yolo
 uv run python commands.py prepare_classification
 

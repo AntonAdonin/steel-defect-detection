@@ -56,9 +56,57 @@ class Commands:
         _prepare_yolo(raw_data_dir, output_dir, train_split, seed)
         print(" YOLO dataset ready!\n")
 
+    def prepare_yolo_kaggle(
+        self,
+        raw_data_dir: str = "data/raw",
+        output_dir: str = "data/yolo_dataset",
+        train_split: float = 0.8,
+        seed: int = 42,
+    ):
+        """
+        Prepare YOLO segmentation dataset.
+
+        Args:
+            raw_data_dir: Directory with raw data
+            output_dir: Directory to save YOLO dataset
+            train_split: Train/val split ratio
+            seed: Random seed
+
+        Example:
+            python commands.py prepare_yolo
+            python commands.py prepare_yolo --train_split=0.9
+        """
+        print("\n Preparing YOLO dataset...")
+        _prepare_yolo(raw_data_dir, output_dir, train_split, seed)
+        print(" YOLO dataset ready!\n")
+    
     def prepare_classification(
         self,
         raw_data_dir: str = "severstal-steel-defect-detection",
+        output_dir: str = "data/classification_dataset",
+        train_split: float = 0.8,
+        seed: int = 42,
+    ):
+        """
+        Prepare classification dataset for EfficientNet.
+
+        Args:
+            raw_data_dir: Directory with raw data
+            output_dir: Directory to save classification dataset
+            train_split: Train/val split ratio
+            seed: Random seed
+
+        Example:
+            python commands.py prepare_classification
+            python commands.py prepare_classification --train_split=0.9
+        """
+        print("\n Preparing classification dataset...")
+        _prepare_classification(raw_data_dir, output_dir, train_split, seed)
+        print(" Classification dataset ready!\n")
+
+    def prepare_classification_kaggle(
+        self,
+        raw_data_dir: str = "data/raw",
         output_dir: str = "data/classification_dataset",
         train_split: float = 0.8,
         seed: int = 42,
@@ -310,7 +358,7 @@ class Commands:
         Example:
             python commands.py lint
         """
-        print("\ Running code quality checks...\n")
+        print("\n🔍 Running code quality checks...\n")
 
         checks = [
             ("Black", ["black", "--check", "."]),
