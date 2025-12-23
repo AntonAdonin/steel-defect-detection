@@ -1,0 +1,32 @@
+# Configuration for model export to ONNX format
+# Steel Defect Detection Project
+
+# Output directory for exported models
+output_dir: "models/exported"
+
+# YOLO model export settings
+yolo:
+  model_name: "yolo"
+  model_path: "models/yolo_best.pt"
+  image_size: 640
+  dynamic: false # Fixed размеры (batch=1, будем использовать max_batch_size в Triton)
+  simplify: true # Simplify ONNX graph
+  opset_version: 18 # ONNX opset version
+  half: false # FP16 export (set true for GPU optimization)
+
+# EfficientNet model export settings
+efficientnet:
+  model_path: "models/efficientnet_steel_defect.pth"
+  model_name: "efficientnet-b0"
+  num_classes: 4 # Number of defect classes
+  image_size: 224 # Input image size for EfficientNet
+  dynamic: true # Dynamic batch size
+  opset_version: 12
+  verify: true # Verify exported ONNX model
+
+
+# # Triton Inference Server settings
+# triton:
+#   model_repository: "triton_model_repository"
+#   yolo_output_path: "triton_model_repository/yolo_detector/1"
+#   efficientnet_output_path: "triton_model_repository/efficientnet_classifier/1"

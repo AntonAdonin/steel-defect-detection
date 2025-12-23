@@ -1,0 +1,55 @@
+# Training configuration
+
+# Training parameters
+epochs: 50
+learning_rate: 0.001
+weight_decay: 0.0001
+early_stopping_patience: 10
+
+# YOLO training
+yolo:
+  epochs: ${train.epochs}
+  imgsz: 640
+  batch: ${data.batch_size}
+  optimizer: "AdamW"
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  patience: ${train.early_stopping_patience}
+  save_period: 5
+  project: "${paths.models_dir}/yolo"
+  name: "yolo11s_steel_defects"
+
+# EfficientNet training
+efficientnet:
+  epochs: ${train.epochs}
+  optimizer: "Adam"
+  learning_rate: ${train.learning_rate}
+  weight_decay: ${train.weight_decay}
+  scheduler: "ReduceLROnPlateau"
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+  gradient_clip_val: 1.0
+
+# Lightning Trainer settings
+trainer:
+  accelerator: "auto"
+  devices: 1
+  precision: "16-mixed" # Mixed precision training
+  max_epochs: ${train.epochs}
+  log_every_n_steps: 10
+  check_val_every_n_epoch: 1
+  enable_checkpointing: true
+  enable_progress_bar: true
+  enable_model_summary: true
+
+# Checkpointing
+checkpoint:
+  dirpath: "${paths.models_dir}/checkpoints"
+  filename: "efficientnet-{epoch:02d}-{val_f1:.2f}"
+  monitor: "val_f1"
+  mode: "max"
+  save_top_k: 3
+  save_last: true

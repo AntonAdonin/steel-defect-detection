@@ -71,7 +71,11 @@ datasets/
 data/
 model_weights/
 weights/
-
+*.db
+predictions/
+mlruns/
+*onnx.data
+outputs/
 # Triton model repo: ignore model version directories (weights) but keep config files
 model_repository/*/1/*
 !model_repository/*/config.pbtxt
@@ -112,3 +116,4 @@ reports/
 *.lock
 *.bak
 *.orig
+/data

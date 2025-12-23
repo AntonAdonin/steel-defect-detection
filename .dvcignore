@@ -1,0 +1,21 @@
+# Add patterns of files dvc should ignore, which could improve
+# the performance. Learn more at
+# https://dvc.org/doc/user-guide/dvcignore
+# Ignore Python cache and temporary files
+*.pyc
+__pycache__
+*.egg-info
+.pytest_cache
+
+# Ignore IDE files
+.vscode
+.idea
+
+# Ignore logs and checkpoints
+*.log
+checkpoints/
+lightning_logs/
+
+# Ignore processed results
+results/
+outputs/

@@ -1,0 +1,25 @@
+# Inference configuration
+
+# Model paths
+yolo_model_path: "${paths.models_dir}/best.pt"
+efficientnet_model_path: "${paths.models_dir}/efficientnet_steel_defect.pth"
+
+# Inference settings
+batch_size: 1
+device: ${device}
+conf_threshold: 0.25
+iou_threshold: 0.45
+
+# Output settings
+save_images: true
+output_dir: "outputs/inference"
+draw_boxes: true
+box_thickness: 2
+font_scale: 0.5
+
+# Class names
+class_names:
+  - "Defect Class 1"
+  - "Defect Class 2"
+  - "Defect Class 3"
+  - "Defect Class 4"

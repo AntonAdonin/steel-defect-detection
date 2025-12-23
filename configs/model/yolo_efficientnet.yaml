@@ -1,0 +1,23 @@
+# YOLO + EfficientNet ensemble model configuration
+
+# YOLO configuration
+yolo:
+  model_name: "yolo11s"
+  pretrained: true
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+  max_detections: 100
+  num_classes: 1 # Only detection, no classification
+
+# EfficientNet configuration
+efficientnet:
+  model_name: "efficientnet-b0"
+  pretrained: true
+  num_classes: 4 # 4 types of defects
+  dropout: 0.2
+  input_size: [224, 224] # Standard EfficientNet input
+
+# Ensemble configuration
+ensemble:
+  crop_padding: 10 # Pixels to add around detected region
+  min_crop_size: [100, 100] # Minimum size for crop to classify
