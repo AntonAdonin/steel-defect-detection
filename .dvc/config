@@ -1,4 +1,0 @@
-[core]
-    remote = local_storage
-['remote "local_storage"']
-    url = /Users/antonadonin/PycharmProjects/mlops-nsu-project/.dvc_storage
