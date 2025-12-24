@@ -40,6 +40,7 @@ def train_yolo(cfg: DictConfig):
     # Start MLflow run
     with mlflow.start_run(run_name=f"yolo_{cfg.model.yolo.model_name}") as run:
         print(f"MLflow Run ID: {run.info.run_id}")
+        print(cfg)
 
         # Log git commit ID
         git_commit = get_git_commit_id()
