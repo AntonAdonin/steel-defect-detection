@@ -117,3 +117,4 @@ reports/
 *.bak
 *.orig
 /data
+uv.lock
