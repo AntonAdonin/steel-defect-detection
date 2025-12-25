@@ -9,6 +9,7 @@ import torch
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint, RichProgressBar
 from pytorch_lightning.loggers import MLFlowLogger
+
 from steel_defect_detection.data_processing.classification_datamodule import (
     SteelDefectClassificationDataModule,
 )

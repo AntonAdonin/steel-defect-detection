@@ -79,7 +79,7 @@ class Commands:
         print("\n Preparing YOLO dataset...")
         _prepare_yolo(raw_data_dir, output_dir, train_split, seed)
         print(" YOLO dataset ready!\n")
-    
+
     def prepare_classification(
         self,
         raw_data_dir: str = "severstal-steel-defect-detection",
@@ -358,7 +358,7 @@ class Commands:
         Example:
             python commands.py lint
         """
-        print("\n🔍 Running code quality checks...\n")
+        print("\n Running code quality checks...\n")
 
         checks = [
             ("Black", ["black", "--check", "."]),
