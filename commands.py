@@ -95,7 +95,7 @@ class Commands:
         self.prepare_classification(raw_data_dir=raw_data_dir)
         print("✓ All datasets ready!\n")
 
-    def train_yolo(self, config_path: str = None):
+    def train_yolo(self, config_path: str | None = None):
         """
         Train YOLO detector with MLflow tracking.
 
@@ -115,7 +115,7 @@ class Commands:
         subprocess.run(cmd, check=True)
         print("✓ YOLO training complete!\n")
 
-    def train_efficientnet(self, config_path: str = None):
+    def train_efficientnet(self, config_path: str | None = None):
         """
         Train EfficientNet classifier with PyTorch Lightning and MLflow.
 

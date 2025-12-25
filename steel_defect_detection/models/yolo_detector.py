@@ -11,7 +11,7 @@ class YOLODetector:
 
     def __init__(
         self,
-        model_path: str = None,
+        model_path: str | None = None,
         model_name: str = "yolo11s.pt",
         conf_threshold: float = 0.25,
         iou_threshold: float = 0.45,
@@ -115,7 +115,7 @@ class YOLODetector:
 
         return boxes
 
-    def export_onnx(self, output_path: str = None, **kwargs):
+    def export_onnx(self, **kwargs):
         """
         Export model to ONNX format.
 

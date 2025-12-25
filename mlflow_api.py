@@ -72,7 +72,7 @@ def decode_base64_image(image_base64: str) -> np.ndarray:
     try:
         raw = base64.b64decode(image_base64)
     except Exception as exc:
-        raise ValueError(f"Invalid base64 image data: {exc}")
+        raise ValueError(f"Invalid base64 image data: {exc}") from exc
     img = Image.open(io.BytesIO(raw)).convert("RGB")
     return pil_to_numpy_rgb(img)
 
@@ -235,7 +235,7 @@ async def predict_image(file: UploadFile = File(...)) -> PredictionResponse:
         raise
     except Exception as exc:  # noqa: BLE001 - keep generic for API error handling
         logger.exception("Prediction error (/predict/image): %s", exc)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 class Base64Request(BaseModel):
@@ -275,10 +275,10 @@ async def predict_base64(request: Base64Request) -> PredictionResponse:
         )
     except ValueError as ve:
         logger.warning("Bad request to /predict/base64: %s", ve)
-        raise HTTPException(status_code=400, detail=str(ve))
+        raise HTTPException(status_code=400, detail=str(ve)) from ve
     except Exception as exc:  # noqa: BLE001
         logger.exception("Prediction error (/predict/base64): %s", exc)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 @app.get("/model/info")

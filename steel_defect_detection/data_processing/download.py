@@ -47,7 +47,8 @@ def download_data(output_dir: str = "data/raw") -> None:
         print("Please make sure you have:")
         print("1. Kaggle API credentials configured (~/.kaggle/kaggle.json)")
         print(
-            "2. Accepted competition rules at: https://www.kaggle.com/competitions/severstal-steel-defect-detection"
+            "2. Accepted competition rules at: "
+            "https://www.kaggle.com/competitions/severstal-steel-defect-detection"
         )
         raise
 

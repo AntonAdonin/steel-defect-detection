@@ -51,8 +51,8 @@ class EfficientNetModule(LightningModule):
         self.criterion = nn.CrossEntropyLoss()
 
         # Metrics storage
-        self.training_step_outputs = []
-        self.validation_step_outputs = []
+        self.training_step_outputs: list = []
+        self.validation_step_outputs: list = []
 
     def forward(self, x):
         """Forward pass."""

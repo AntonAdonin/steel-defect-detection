@@ -47,7 +47,7 @@ def train_yolo(cfg: DictConfig):
 
         # Log configuration parameters
         print("\n[2/5] Logging hyperparameters...")
-        config_dict = OmegaConf.to_container(cfg, resolve=True)
+        OmegaConf.to_container(cfg, resolve=True)
 
         # Log YOLO specific params
         yolo_params = {

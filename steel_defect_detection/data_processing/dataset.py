@@ -16,7 +16,7 @@ class SteelDefectDataset(Dataset):
     def __init__(
         self,
         images_dir: str,
-        annotations_csv: str = None,
+        annotations_csv: str | None = None,
         transform=None,
         is_train: bool = True,
     ):
@@ -34,7 +34,7 @@ class SteelDefectDataset(Dataset):
         self.transform = transform
 
         # Get list of images
-        self.image_files = sorted(list(self.images_dir.glob("*.jpg")))
+        self.image_files = sorted(self.images_dir.glob("*.jpg"))
 
         # Load annotations if provided
         self.annotations = None
@@ -56,7 +56,6 @@ class SteelDefectDataset(Dataset):
             img_annotations = self.annotations[self.annotations["ImageId"] == img_name]
 
             # Parse RLE masks and create bounding boxes
-            boxes = []
             labels = []
 
             for _, row in img_annotations.iterrows():
