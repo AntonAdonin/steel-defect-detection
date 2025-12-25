@@ -40,6 +40,7 @@ def train_yolo(cfg: DictConfig):
     # Start MLflow run
     with mlflow.start_run(run_name=f"yolo_{cfg.model.yolo.model_name}") as run:
         print(f"MLflow Run ID: {run.info.run_id}")
+        print(cfg)
 
         # Log git commit ID
         git_commit = get_git_commit_id()
@@ -71,10 +72,10 @@ def train_yolo(cfg: DictConfig):
         model_name = cfg.model.yolo.model_name
         if cfg.model.yolo.pretrained:
             model = YOLO(f"{model_name}.pt")
-            print(f"✓ Loaded pretrained {model_name}")
+            print(f" Loaded pretrained {model_name}")
         else:
             model = YOLO(f"{model_name}.yaml")
-            print(f"✓ Created {model_name} from scratch")
+            print(f" Created {model_name} from scratch")
 
         # Prepare data.yaml path
         data_yaml = Path(cfg.data.raw_data_dir) / "data.yaml"
@@ -139,13 +140,13 @@ def train_yolo(cfg: DictConfig):
             plot_path = results_dir / plot_name
             if plot_path.exists():
                 mlflow.log_artifact(str(plot_path), "plots")
-                print(f"✓ Logged {plot_name}")
+                print(f" Logged {plot_name}")
 
         # Log best model weights
         best_weights = results_dir / "weights" / "best.pt"
         if best_weights.exists():
             mlflow.log_artifact(str(best_weights), "models")
-            print("✓ Logged best model weights")
+            print(" Logged best model weights")
 
             # Copy to models directory
             models_dir = Path(cfg.paths.models_dir)
@@ -155,13 +156,13 @@ def train_yolo(cfg: DictConfig):
             import shutil
 
             shutil.copy(best_weights, target_path)
-            print(f"✓ Copied best weights to {target_path}")
+            print(f" Copied best weights to {target_path}")
 
         # Log last model weights
         last_weights = results_dir / "weights" / "last.pt"
         if last_weights.exists():
             mlflow.log_artifact(str(last_weights), "models")
-            print("✓ Logged last model weights")
+            print(" Logged last model weights")
 
         # Log results.csv if exists
         results_csv = results_dir / "results.csv"
@@ -182,7 +183,7 @@ def train_yolo(cfg: DictConfig):
                         if pd.notna(value) and isinstance(value, (int, float)):
                             mlflow.log_metric(col.strip(), float(value), step=epoch)
 
-            print("✓ Logged per-epoch metrics from results.csv")
+            print(" Logged per-epoch metrics from results.csv")
 
         print("\n" + "=" * 80)
         print("Training Complete!")

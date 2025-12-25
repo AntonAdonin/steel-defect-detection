@@ -43,7 +43,7 @@ def export_efficientnet(cfg: DictConfig):
     state_dict = torch.load(model_path, map_location="cpu")
     model.load_state_dict(state_dict)
     model.eval()
-    logger.info("✓ Model weights loaded successfully")
+    logger.info(" Model weights loaded successfully")
 
     # Prepare output directory
     output_dir = Path(cfg.output_dir)
@@ -70,14 +70,14 @@ def export_efficientnet(cfg: DictConfig):
         },  # optional dynamic batch
     )
 
-    logger.info(f"✓ EfficientNet model exported successfully to {export_path}")
+    logger.info(f" EfficientNet model exported successfully to {export_path}")
 
     # Verify ONNX model
     if cfg.efficientnet.get("verify", True):
         logger.info("Verifying ONNX model...")
         onnx_model = onnx.load(str(export_path))
         onnx.checker.check_model(onnx_model)
-        logger.info("✓ ONNX model verification passed")
+        logger.info(" ONNX model verification passed")
 
 
 if __name__ == "__main__":

@@ -58,6 +58,12 @@ uv sync --all-extras
 mkdir -p ~/.kaggle
 cp kaggle.json ~/.kaggle/
 chmod 600 ~/.kaggle/kaggle.json
+
+# Если нет доуступа к соревнованию
+curl -L "https://drive.usercontent.google.com/download?id=1zQ2VKA6ng5M_oXFd6JtM_r6keebwBtfK&export=download&authuser=0&confirm=t&uuid=b105bbe9-bd14-4d50-ba40-9846b8be2e31&at=ANTm3cwd74EzDdpYsCve7IAvOP40%3A1766528697689" -o data.zip
+unzip data.zip
+rm -rf __MACOSX
+rm -rf data.zip
 ```
 
 ### Полный пайплайн
@@ -67,6 +73,11 @@ chmod 600 ~/.kaggle/kaggle.json
 uv run python commands.py download_data
 
 # 2. Подготовить данные
+# 2.1. При загрузки датасета через kaggle
+uv run python commands.py prepare_yolo_kaggle
+uv run python commands.py prepare_classification_kaggle
+
+# 2.2. При загрузки датасета через curl
 uv run python commands.py prepare_yolo
 uv run python commands.py prepare_classification
 

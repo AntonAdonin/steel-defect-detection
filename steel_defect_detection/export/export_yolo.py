@@ -46,7 +46,7 @@ def export_yolo(cfg: DictConfig):
 
     shutil.copy(export_path, output_dir / "model.onnx")
 
-    logger.info(f"✓ YOLO model exported successfully to {output_dir / 'model.onnx'}")
+    logger.info(f" YOLO model exported successfully to {output_dir / 'model.onnx'}")
     logger.info(f"Original export path: {export_path}")
 
 

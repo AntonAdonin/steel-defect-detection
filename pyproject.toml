@@ -18,7 +18,7 @@ dependencies = [
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
     "psycopg2-binary>=2.9.0",
-    "tritonclient[http]>=2.37.0; platform_system != 'Darwin' or platform_machine != 'arm64'",
+    "tritonclient[http]>=2.37.0; sys_platform != 'win32'",
     "fire>=0.5.0",
     "opencv-python>=4.8.0",
     "pillow>=10.0.0",
@@ -63,6 +63,8 @@ extend-exclude = '''
   | data
 )/
 '''
+
+
 
 [tool.isort]
 profile = "black"

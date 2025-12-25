@@ -5,11 +5,11 @@ dataset_name: "severstal-steel-defect-detection"
 kaggle_dataset: "c/severstal-steel-defect-detection"
 
 # Paths
-raw_data_dir: "${paths.data_dir}/raw"
+raw_data_dir: "data/yolo_dataset"
 processed_data_dir: "${paths.data_dir}/processed"
-train_images_dir: "${raw_data_dir}/train_images"
-test_images_dir: "${raw_data_dir}/test_images"
-train_csv: "${raw_data_dir}/train.csv"
+train_images_dir: "severstal-steel-defect-detection/train_images"
+test_images_dir: "severstal-steel-defect-detection/test_images"
+train_csv: "severstal-steel-defect-detection/train.csv"
 classification_dataset_dir: "${paths.data_dir}/classification_dataset"
 
 # Data split
