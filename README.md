@@ -156,10 +156,6 @@ steel-defect-detection/
 ├── pyproject.toml              # Зависимости и настройки
 │
 ├── QUICKSTART.md               # Быстрый старт
-├── TRAINING_GUIDE.md           # Руководство по обучению
-├── MLFLOW_GUIDE.md             # MLflow интеграция
-├── DVC_GUIDE.md                # DVC для данных
-└── CI_GUIDE.md                 # GitHub Actions CI
 ```
 
 ## 🛠 CLI команды (commands.py)
@@ -374,8 +370,6 @@ git clone <repo>
 uv run python commands.py dvc_pull
 ```
 
-Подробнее: [DVC_GUIDE.md](DVC_GUIDE.md)
-
 ## 🐳 Docker (опционально)
 
 Проект использует UV для управления зависимостями. Docker не обязателен, но можно использовать для deployment:
@@ -394,12 +388,6 @@ docker run -p 8000:8000 \
 ## 📚 Документация
 
 - [QUICKSTART.md](QUICKSTART.md) - Быстрый старт за 5 минут
-- [TRAINING_GUIDE.md](TRAINING_GUIDE.md) - Подробное руководство по обучению
-- [MLFLOW_GUIDE.md](MLFLOW_GUIDE.md) - MLflow tracking и serving
-- [DVC_GUIDE.md](DVC_GUIDE.md) - Версионирование данных
-- [CI_GUIDE.md](CI_GUIDE.md) - GitHub Actions и линтеры
-- [project_structure.md](project_structure.md) - Требования к проекту
-- [project_description.md](project_description.md) - Описание задачи
 
 ## 🔧 Требования
 
@@ -408,32 +396,3 @@ docker run -p 8000:8000 \
 - Kaggle API (для загрузки данных)
 - 8GB+ RAM
 - GPU рекомендуется для обучения
-
-## 🤝 Вклад в проект
-
-1. Fork репозитория
-2. Создать feature branch (`git checkout -b feature/amazing-feature`)
-3. Установить pre-commit: `uv run pre-commit install`
-4. Commit изменений (`git commit -m 'Add amazing feature'`)
-5. Push в branch (`git push origin feature/amazing-feature`)
-6. Открыть Pull Request
-
-Все PR автоматически проверяются через GitHub Actions CI.
-
-## 📝 Лицензия
-
-Проект создан для образовательных целей в рамках курса MLOps НГУ.
-
-## 👥 Авторы
-
-Anton Adonin - NSU MLOps Project 2024/2025
-
-## 🙏 Благодарности
-
-- [Ultralytics YOLO](https://github.com/ultralytics/ultralytics)
-- [PyTorch Lightning](https://github.com/Lightning-AI/lightning)
-- [MLflow](https://mlflow.org/)
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [UV](https://github.com/astral-sh/uv)
-- [DVC](https://dvc.org/)
-- [Severstal Steel Defect Detection Dataset](https://www.kaggle.com/c/severstal-steel-defect-detection)
