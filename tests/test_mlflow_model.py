@@ -1,6 +1,5 @@
 """Test MLflow model locally before deployment."""
 
-import sys
 from pathlib import Path
 
 import numpy as np
