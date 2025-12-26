@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import numpy as np
+import sys
 
 from steel_defect_detection.inference.mlflow_model import SteelDefectEnsemble
 
