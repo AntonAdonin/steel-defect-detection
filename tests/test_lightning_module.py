@@ -3,13 +3,14 @@
 import sys
 from pathlib import Path
 
+import torch
+
+from steel_defect_detection.training.efficientnet_module import EfficientNetModule
+
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-import torch
-
-from steel_defect_detection.training.efficientnet_module import EfficientNetModule
 
 
 def test_module():

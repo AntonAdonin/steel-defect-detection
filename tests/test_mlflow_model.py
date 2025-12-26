@@ -2,14 +2,14 @@
 
 import sys
 from pathlib import Path
+import numpy as np
+
+from steel_defect_detection.inference.mlflow_model import SteelDefectEnsemble
 
 # Add project root to path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-import numpy as np
-
-from steel_defect_detection.inference.mlflow_model import SteelDefectEnsemble
 
 
 def test_model():
